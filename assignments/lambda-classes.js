@@ -18,10 +18,10 @@ class Instructor extends Person {
         this.catchPhrase = instructorAttr.catchPhrase;
     }
     demo(subject) {
-        console.log(`Today, we are learning about ${subject}`);
+        console.log(`Today, we are learning about ${subject}.`);
     }
     grade(studentObj, subject) {
-        console.log(`${studentObj.name} receives a perfect score on ${subject}`);
+        console.log(`${studentObj.name} receives a perfect score on ${subject}.`);
     }
 }
 
@@ -35,7 +35,7 @@ class TeamLead extends Instructor {
         console.log(`${this.name} announces to ${channel}, @channel standy times!`);
     }
     debugsCode(studentObj, subject) {
-        console.log(`${this.name} debugs ${studentObj.name}'s code on ${subject}`);
+        console.log(`${this.name} debugs ${studentObj.name}'s code on ${subject}.`);
     }
 }
 
@@ -47,13 +47,13 @@ class Student extends Person {
         this.favSubjects = studentAttr.favSubjects;
     }
     listsSubjects() {
-        console.log(this.favSubjects);
+        console.log(`${this.name}'s favorite subjects:`, this.favSubjects);
     }
     prAssignments(subject) {
-        console.log(`${this.name} has submitted a PR for ${subject}`);
+        console.log(`${this.name} has submitted a PR for ${subject}.`);
     }
     sprintChallenge(subject) {
-        console.log(`${this.name} has begun sprint challenge on ${subject}`);
+        console.log(`${this.name} has begun sprint challenge on ${subject}.`);
     }
 }
 
@@ -65,18 +65,18 @@ const marge = new Instructor({
     favLanguage: 'JavaScript',
     specialty: 'Front-end',
     catchPhrase: 'Oh, Homie.'
-  });
-  const homer = new Instructor({
+});
+const homer = new Instructor({
     name: 'Homer',
-    location: 'Control Room',
+    location: 'the Control Room',
     age: 32,
     favLanguage: 'Python',
     specialty: 'Back-end',
     catchPhrase: 'D\'oh'
-  });
+});
 
-  // team lead objects
-  const burns = new TeamLead({
+// team lead objects
+const burns = new TeamLead({
     name: 'Mr. Burns',
     location: 'Nuclear Power Plant',
     age: 73,
@@ -85,8 +85,8 @@ const marge = new Instructor({
     catchPhrase: 'Release the Hounds!',
     gradClassName: 'Java III',
     favInstructor: 'Marge'
-  });
-  const skinner = new TeamLead({
+});
+const skinner = new TeamLead({
     name: 'Principal Skinner',
     location: 'Springfield Elementary',
     age: 42,
@@ -95,22 +95,41 @@ const marge = new Instructor({
     catchPhrase: '(sigh) Yes, mother.',
     gradClassName: 'Ruby III',
     favInstructor: 'Homer'
-  });
+});
 
-  // student objects
-  const lisa = new Student({
+// student objects
+const lisa = new Student({
     name: 'Lisa',
     location: 'Band Room',
     age: 8,
     previousBackground: 'Jazz Player',
-    className: '',
+    className: 'Band',
     favSubjects: ['English', 'Math', 'Science', 'Okay, everything']
-  });
-  const bart = new Student({
+});
+const bart = new Student({
     name: 'Bart',
-    location: 'Tree House',
+    location: 'the Tree House',
     age: 10,
     previousBackground: 'Skateboard Champion',
-    className: '',
+    className: 'P.E.',
     favSubjects: ['none']
-  });
+});
+
+console.log(marge.name, marge.location, marge.age, marge.favLanguage, marge.specialty, marge.catchPhrase);
+homer.speak();
+homer.demo('Java');
+homer.grade(lisa, 'Java');
+
+console.log(burns.name, burns.location, burns.age, burns.favLanguage, burns.catchPhrase, burns.gradClassName, burns.favInstructor);
+skinner.speak();
+skinner.demo('Ruby');
+skinner.grade(bart, 'Ruby');
+skinner.standUp('webpt11');
+skinner.debugsCode(bart, 'Ruby');
+
+console.log(lisa.name, lisa.location, lisa.age, lisa.previousBackground, lisa.className, lisa.favSubjects);
+bart.speak();
+lisa.listsSubjects();
+bart.listsSubjects();
+bart.prAssignments('Ruby');
+bart.sprintChallenge('Java');

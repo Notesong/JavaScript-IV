@@ -301,21 +301,6 @@ const villian = new Villian({
     language: 'Cetra',
 });
 
-// battle moved to GameObject
-// function battle() {
-//     // loop until either the hero or villian dies
-//     do {
-//         if (hero.healthPoints > 0) {
-//             console.log(hero.attack());
-//             console.log(villian.damageResult());
-//         }
-//         if (villian.healthPoints > 0) {
-//             console.log(villian.attack());
-//             console.log(hero.damageResult());
-//         }
-//     } while (hero.healthPoints > 0 && villian.healthPoints > 0);
-// }
-
 // create basic game object for battles
 const mainGameObject = new GameObject({});
 
