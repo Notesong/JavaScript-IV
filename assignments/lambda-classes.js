@@ -47,7 +47,7 @@ class Student extends Person {
         this.favSubjects = studentAttr.favSubjects;
     }
     listsSubjects() {
-        console.log(`${this.name}'s favorite subjects:`, this.favSubjects);
+        console.log(`${this.name}'s favorite subjects:`, this.favSubjects.join(", "));
     }
     prAssignments(subject) {
         console.log(`${this.name} has submitted a PR for ${subject}.`);
@@ -64,7 +64,7 @@ const marge = new Instructor({
     age: 32,
     favLanguage: 'JavaScript',
     specialty: 'Front-end',
-    catchPhrase: 'Oh, Homie.'
+    catchPhrase: '"Oh, Homie."'
 });
 const homer = new Instructor({
     name: 'Homer',
@@ -72,7 +72,7 @@ const homer = new Instructor({
     age: 32,
     favLanguage: 'Python',
     specialty: 'Back-end',
-    catchPhrase: 'D\'oh'
+    catchPhrase: '"D\'oh"'
 });
 
 // team lead objects
@@ -82,7 +82,7 @@ const burns = new TeamLead({
     age: 73,
     favLanguage: 'Java',
     specialty: 'Front-end',
-    catchPhrase: 'Release the Hounds!',
+    catchPhrase: '"Release the Hounds!"',
     gradClassName: 'Java III',
     favInstructor: 'Marge'
 });
@@ -92,7 +92,7 @@ const skinner = new TeamLead({
     age: 42,
     favLanguage: 'Ruby',
     specialty: 'Back-end',
-    catchPhrase: '(sigh) Yes, mother.',
+    catchPhrase: '(sigh) "Yes, mother."',
     gradClassName: 'Ruby III',
     favInstructor: 'Homer'
 });
@@ -104,7 +104,7 @@ const lisa = new Student({
     age: 8,
     previousBackground: 'Jazz Player',
     className: 'Band',
-    favSubjects: ['English', 'Math', 'Science', 'Okay, everything']
+    favSubjects: ['English', 'Math', 'Science', 'Music', 'Art', 'History', '...Okay, okay, everything']
 });
 const bart = new Student({
     name: 'Bart',
@@ -115,11 +115,13 @@ const bart = new Student({
     favSubjects: ['none']
 });
 
+// teacher output
 console.log(marge.name, marge.location, marge.age, marge.favLanguage, marge.specialty, marge.catchPhrase);
 homer.speak();
 homer.demo('Java');
 homer.grade(lisa, 'Java');
 
+// team lead output
 console.log(burns.name, burns.location, burns.age, burns.favLanguage, burns.catchPhrase, burns.gradClassName, burns.favInstructor);
 skinner.speak();
 skinner.demo('Ruby');
@@ -127,6 +129,7 @@ skinner.grade(bart, 'Ruby');
 skinner.standUp('webpt11');
 skinner.debugsCode(bart, 'Ruby');
 
+// student output
 console.log(lisa.name, lisa.location, lisa.age, lisa.previousBackground, lisa.className, lisa.favSubjects);
 bart.speak();
 lisa.listsSubjects();
