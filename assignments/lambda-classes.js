@@ -25,11 +25,11 @@ class Instructor extends Person {
     }
 }
 
-class ProjectManager extends Instructor {
-    constructor(pmAttr) {
-        super(pmAttr);
-        this.gradClassName = pmAttr.gradClassName;
-        this.favInstructor = pmAttr.favInstructor;
+class TeamLead extends Instructor {
+    constructor(tlAttr) {
+        super(tlAttr);
+        this.gradClassName = tlAttr.gradClassName;
+        this.favInstructor = tlAttr.favInstructor;
     }
     standUp(channel) {
         console.log(`${this.name} announces to ${channel}, @channel standy times!`);
@@ -57,57 +57,60 @@ class Student extends Person {
     }
 }
 
+// instructor objects
 const marge = new Instructor({
-    name: 'marge',
-    location: 'Bedrock',
+    name: 'Marge',
+    location: 'Grocery Store',
     age: 32,
     favLanguage: 'JavaScript',
     specialty: 'Front-end',
-    catchPhrase: `Don't forget the homies`
+    catchPhrase: 'Oh, Homie.'
   });
   const homer = new Instructor({
-    name: ``,
-    location: ``,
+    name: 'Homer',
+    location: 'Control Room',
     age: 32,
-    favLanguage: `Python`,
-    specialty: ``,
-    catchPhrase: ``,
+    favLanguage: 'Python',
+    specialty: 'Back-end',
+    catchPhrase: 'D\'oh'
   });
 
-  const burns = new ProjectManager({
-    name: ``,
-    location: ``,
+  // team lead objects
+  const burns = new TeamLead({
+    name: 'Mr. Burns',
+    location: 'Nuclear Power Plant',
     age: 73,
-    favLanguage: `Java`,
-    specialty: ``,
-    catchPhrase: ``,
-    gradClassName: ``,
-    favInstructor: ``
+    favLanguage: 'Java',
+    specialty: 'Front-end',
+    catchPhrase: 'Release the Hounds!',
+    gradClassName: 'Java III',
+    favInstructor: 'Marge'
   });
-  const skinner = new ProjectManager({
-    name: '',
-    location: '',
+  const skinner = new TeamLead({
+    name: 'Principal Skinner',
+    location: 'Springfield Elementary',
     age: 42,
     favLanguage: 'Ruby',
-    specialty: '',
-    catchPhrase: ``,
-    gradClassName: ``,
-    favInstructor: ``
+    specialty: 'Back-end',
+    catchPhrase: '(sigh) Yes, mother.',
+    gradClassName: 'Ruby III',
+    favInstructor: 'Homer'
   });
 
+  // student objects
   const lisa = new Student({
-    name: ``,
-    location: ``,
+    name: 'Lisa',
+    location: 'Band Room',
     age: 8,
-    previousBackground: ``,
-    className: ``,
-    favSubjects: ``
+    previousBackground: 'Jazz Player',
+    className: '',
+    favSubjects: ['English', 'Math', 'Science', 'Okay, everything']
   });
   const bart = new Student({
-    name: ``,
-    location: ``,
+    name: 'Bart',
+    location: 'Tree House',
     age: 10,
-    previousBackground: ``,
-    className: ``,
-    favSubjects: ``
+    previousBackground: 'Skateboard Champion',
+    className: '',
+    favSubjects: ['none']
   });
