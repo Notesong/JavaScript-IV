@@ -33,18 +33,19 @@ class GameObject {
     destroy() {
         return `${this.name} is removed from the game.`;
     }
-    battle() {
-        // loop until either the hero or villian dies
+    // battle function allows combatants to fight until they lose all hps and die.
+    battle(combatant1, combatant2) {
+        // loop until either combatant dies
         do {
-            if (hero.healthPoints > 0) {
-                console.log(hero.attack());
-                console.log(villian.damageResult());
+            if (combatant1.healthPoints > 0) {
+                console.log(combatant1.attack());
+                console.log(combatant2.damageResult(combatant1));
             }
-            if (villian.healthPoints > 0) {
-                console.log(villian.attack());
-                console.log(hero.damageResult());
+            if (combatant2.healthPoints > 0) {
+                console.log(combatant2.attack());
+                console.log(combatant1.damageResult(combatant2));
             }
-        } while (hero.healthPoints > 0 && villian.healthPoints > 0);
+        } while (combatant1.healthPoints > 0 && combatant2.healthPoints > 0);
     }
 }
 
@@ -80,15 +81,18 @@ class CharacterStats extends GameObject {
     constructor(characterAttr) {
         super(characterAttr);
         this.healthPoints = characterAttr.healthPoints;
+        // attack power for stretch goal
+        this.attackPower = characterAttr.attackPower;
     }
     takeDamage() {
         return `${this.name} takes damage.`;
     }
     // calculate battle damage for the stretch goal
-    damageResult() {
-        // take 0-9 hps damage
-        let damage = Math.floor(Math.random() * 10);
+    damageResult(enemy) {
+        // damage based on enemy attack power
+        let damage = Math.floor(Math.random() * enemy.attackPower);
         this.healthPoints -= damage;
+        // checks to see if combatant died. If not, battle continues.
         if (this.healthPoints < 1) {
             return `${this.name} takes ${damage} damage and dies. ` + this.destroy();
         } else {
@@ -165,6 +169,7 @@ const mage = new Humanoid({
         height: 1,
     },
     healthPoints: 5,
+    attackPower: 3,
     name: 'Bruce',
     team: 'Mage Guild',
     weapons: [
@@ -181,6 +186,7 @@ const swordsman = new Humanoid({
         height: 2,
     },
     healthPoints: 15,
+    attackPower: 3,
     name: 'Sir Mustachio',
     team: 'The Round Table',
     weapons: [
@@ -198,6 +204,7 @@ const archer = new Humanoid({
         height: 4,
     },
     healthPoints: 10,
+    attackPower: 3,
     name: 'Lilith',
     team: 'Forest Kingdom',
     weapons: [
@@ -275,6 +282,7 @@ const hero = new Hero({
         height: 3,
     },
     healthPoints: 25,
+    attackPower: 10,
     name: 'Sephiroth',
     prefix: 'General',
     team: 'Loveless',
@@ -292,6 +300,7 @@ const villian = new Villian({
         height: 3,
     },
     healthPoints: 25,
+    attackPower: 10,
     name: 'Vincent',
     lastName: 'Valentine',
     team: 'Seventh Heaven',
@@ -310,4 +319,4 @@ console.log(`Hero ${hero.prefix} ${hero.name}: ${hero.healthPoints} hps | Villia
 console.log(villian.greet());
 console.log(`${hero.prefix} ` + hero.glare());
 // the battle itself
-mainGameObject.battle();
+mainGameObject.battle(hero, villian);
