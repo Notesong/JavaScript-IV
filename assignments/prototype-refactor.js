@@ -50,7 +50,7 @@ class GameObject {
     // basic attack for anyone without a specialized attack
     attack() {
         return `${this.name} attacks with ${this.weapons.join(" and ")}.`;
-    };
+    }
 }
 
 

@@ -23,6 +23,24 @@ class Instructor extends Person {
     grade(studentObj, subject) {
         console.log(`${studentObj.name} receives a perfect score on ${subject}.`);
     }
+    // adjusts a student's grade by a random amount (either positive or negative)
+    adjustGrade(studentObj) {
+        console.log(`${this.name} determines ${studentObj.name} has a grade of ${studentObj.grade}.`);
+        do {
+            if (studentObj.grade < 71) {
+                studentObj.grade += Math.floor((Math.random() * 30) - 7);
+                // check if student's grade is below 0 and adjust to 0 if necessary
+                if (studentObj.grade < 0) {
+                    studentObj.grade = 0;
+                }
+                console.log(`${studentObj.name} now has a ${studentObj.grade}.`);
+            }
+            // allow the student to graduate if their grade is 71+
+            if (studentObj.grade > 70) {
+                studentObj.graduate();
+            }
+        } while (studentObj.grade < 71);
+    }
 }
 
 class TeamLead extends Instructor {
@@ -45,6 +63,8 @@ class Student extends Person {
         this.previousBackground = studentAttr.previousBackground;
         this.className = studentAttr.className;
         this.favSubjects = studentAttr.favSubjects;
+        // stretch goal random number between 1 and 100
+        this.grade = Math.floor((Math.random() * 100) + 1);
     }
     listsSubjects() {
         console.log(`${this.name}'s favorite subjects:`, this.favSubjects.join(", "));
@@ -54,6 +74,9 @@ class Student extends Person {
     }
     sprintChallenge(subject) {
         console.log(`${this.name} has begun sprint challenge on ${subject}.`);
+    }
+    graduate() {
+        console.log(`${this.name} has a grade of ${this.grade} and has graduated.`);
     }
 }
 
@@ -116,13 +139,13 @@ const bart = new Student({
 });
 
 // teacher output
-console.log(marge.name, marge.location, marge.age, marge.favLanguage, marge.specialty, marge.catchPhrase);
+console.log(marge.name + ", " + marge.location + ", " + marge.age + ", " + marge.favLanguage + ", " + marge.specialty + ", " + marge.catchPhrase);
 homer.speak();
 homer.demo('Java');
 homer.grade(lisa, 'Java');
 
 // team lead output
-console.log(burns.name, burns.location, burns.age, burns.favLanguage, burns.catchPhrase, burns.gradClassName, burns.favInstructor);
+console.log(burns.name + ", " + burns.location + ", " + burns.age + ", " + burns.favLanguage + ", " + burns.catchPhrase + ", " + burns.gradClassName, burns.favInstructor);
 skinner.speak();
 skinner.demo('Ruby');
 skinner.grade(bart, 'Ruby');
@@ -130,9 +153,13 @@ skinner.standUp('webpt11');
 skinner.debugsCode(bart, 'Ruby');
 
 // student output
-console.log(lisa.name, lisa.location, lisa.age, lisa.previousBackground, lisa.className, lisa.favSubjects);
+console.log(lisa.name + ", " + lisa.location + ", " + lisa.age + ", " + lisa.previousBackground + ", " + lisa.className + ", " + lisa.favSubjects.join(", "));
 bart.speak();
 lisa.listsSubjects();
 bart.listsSubjects();
 bart.prAssignments('Ruby');
 bart.sprintChallenge('Java');
+
+// adjust grades
+marge.adjustGrade(lisa);
+burns.adjustGrade(bart);
