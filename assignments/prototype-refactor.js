@@ -47,6 +47,10 @@ class GameObject {
             }
         } while (combatant1.healthPoints > 0 && combatant2.healthPoints > 0);
     }
+    // basic attack for anyone without a specialized attack
+    attack() {
+        return `${this.name} attacks with ${this.weapons.join(" and ")}.`;
+    };
 }
 
 
@@ -314,9 +318,12 @@ const villian = new Villian({
 const mainGameObject = new GameObject({});
 
 // battle intro
-console.log(`..........The Showdown..........`)
-console.log(`Hero ${hero.prefix} ${hero.name}: ${hero.healthPoints} hps | Villian ${villian.name} ${villian.lastName}: ${villian.healthPoints} hps`);
+console.log(`\n..........The Showdown..........\n`)
+console.log(`Hero ${hero.prefix} ${hero.name}: ${hero.healthPoints} hps | Villian ${villian.name} ${villian.lastName}: ${villian.healthPoints} hps\n`);
 console.log(villian.greet());
-console.log(`${hero.prefix} ` + hero.glare());
+console.log(`\n${hero.prefix} ` + hero.glare() + `\n`);
 // the battle itself
 mainGameObject.battle(hero, villian);
+// example secondary battle to demonstate battle()
+console.log(`\n..........Another Battle Example..........\n`);
+mainGameObject.battle(mage, swordsman);
