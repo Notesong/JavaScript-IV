@@ -259,18 +259,18 @@ class Hero extends Humanoid {
     }
 }
 
-// Villian constructor and prototype
-// function Villian(villianAttr) {
-//     Humanoid.call(this, villianAttr);
+// Villain constructor and prototype
+// function Villain(villainAttr) {
+//     Humanoid.call(this, villainAttr);
 // }
-// Villian.prototype = Object.create(Humanoid.prototype);
-// Villian.prototype.attack = function () {
+// Villain.prototype = Object.create(Humanoid.prototype);
+// Villain.prototype.attack = function () {
 //     return `${this.name} brings death with ${this.weapons}.`;
 // }
 
-class Villian extends Humanoid {
-    constructor(villianAttr) {
-        super(villianAttr);
+class Villain extends Humanoid {
+    constructor(villainAttr) {
+        super(villainAttr);
     }
     attack() {
         return `${this.name} brings death with ${this.weapons}.`;
@@ -296,7 +296,7 @@ const hero = new Hero({
     language: 'Common Tongue',
 });
 
-const villian = new Villian({
+const villain = new Villain({
     createdAt: new Date(),
     dimensions: {
         length: 3,
@@ -319,11 +319,11 @@ const mainGameObject = new GameObject({});
 
 // battle intro
 console.log(`\n..........The Showdown..........\n`)
-console.log(`Hero ${hero.prefix} ${hero.name}: ${hero.healthPoints} hps | Villian ${villian.name} ${villian.lastName}: ${villian.healthPoints} hps\n`);
-console.log(villian.greet());
+console.log(`Hero ${hero.prefix} ${hero.name}: ${hero.healthPoints} hps | Villain ${villain.name} ${villain.lastName}: ${villain.healthPoints} hps\n`);
+console.log(villain.greet());
 console.log(`\n${hero.prefix} ` + hero.glare() + `\n`);
 // the battle itself
-mainGameObject.battle(hero, villian);
+mainGameObject.battle(hero, villain);
 // example secondary battle to demonstate battle()
 console.log(`\n..........Another Battle Example..........\n`);
 mainGameObject.battle(mage, swordsman);
